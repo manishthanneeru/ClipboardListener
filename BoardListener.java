@@ -14,13 +14,14 @@ class BoardListener extends Thread implements ClipboardOwner {
   public void lostOwnership(Clipboard c, Transferable t) {
     try
     {
-      this.sleep(200);
-    }
-    catch(Exception e)
+      this.sleep(200);                                         //this is for the program to wait until the large data is
+                                                               //copied into the clipboard. if it doesnt wait clipboard
+    }                                                          //is empty by the time program looks for contents and returns 
+    catch(Exception e)                                         //an exception.
     {
       e.printStackTrace();
     }
-    Transferable contents = sClip.getContents(this); //EXCEPTION
+    Transferable contents = sClip.getContents(this);            //EXCEPTION
     processContents(contents);
     regainOwnership(contents);
   }
@@ -44,7 +45,7 @@ class BoardListener extends Thread implements ClipboardOwner {
   }
   
   public static void main(String[] args) {
-    BoardListener b = new BoardListener();
+    BoardListener b = new BoardListener();                        //thread interface
     b.start();
   }
 }
